@@ -1,0 +1,38 @@
+@theme {
+  /* surfaces */
+  --color-bg: #fff8ec;
+  --color-on-bg: #2b1b12;
+  --color-text: var(--color-on-bg);
+  --color-surface: #fff1d6;
+  --color-border: #e8d5b5;
+  --color-muted: #8a7256;
+
+  /* brand */
+  --color-pri: #d62828;
+  --color-on-pri: #fff8ec;
+  --color-sec: #ffb703;
+  --color-on-sec: #2b1b12;
+  --color-tert: #4c9a63;
+  --color-on-tert: #fff8ec;
+  --color-acc: #2ec4b6;
+  --color-on-acc: #fff8ec;
+
+  --radius-card: 0.75rem;
+}
+
+:root.dark {
+  --color-bg: #1c130d;
+  --color-on-bg: #fbead9;
+  --color-surface: #2b1d13;
+  --color-border: #4a3524;
+  --color-muted: #b39a7f;
+
+  --color-pri: #ff5a5f;
+  --color-on-pri: #1c130d;
+  --color-sec: #ffc93c;
+  --color-on-sec: #1c130d;
+  --color-tert: #6cc38b;
+  --color-on-tert: #1c130d;
+  --color-acc: #3fe0d0;
+  --color-on-acc: #1c130d;
+}
