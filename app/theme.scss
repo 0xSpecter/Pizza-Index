@@ -1,4 +1,8 @@
-@theme {
+:root {
+  /* type */
+  --font: "Comic Relief", system-ui;
+  --font-display: "Luckiest Guy", cursive;
+
   /* surfaces */
   --color-bg: #fff8ec;
   --color-on-bg: #2b1b12;

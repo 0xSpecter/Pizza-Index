@@ -1,0 +1,82 @@
+@use "constants" as *;
+
+.add {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 2rem 1rem;
+}
+
+.header {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 2.5rem;
+	font-style: italic;
+
+	@include phone {
+		font-size: 2rem;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+	max-width: 24rem;
+	padding: 1.5rem;
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-card);
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+
+	input,
+	select {
+		font: inherit;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-card);
+		background: var(--color-bg);
+		color: var(--color-text);
+	}
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.error {
+	font-size: 0.85rem;
+	color: var(--color-pri);
+}
+
+.submit {
+	font: inherit;
+	font-weight: 600;
+	padding: 0.6rem 1rem;
+	border: none;
+	border-radius: var(--radius-card);
+	background: var(--color-pri);
+	color: var(--color-on-pri);
+	cursor: pointer;
+	transition: opacity 0.15s ease;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+.success {
+	margin: 0;
+	text-align: center;
+	color: var(--color-tert);
+}

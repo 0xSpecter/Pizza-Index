@@ -1,0 +1,11 @@
+@use 'sass:color' as *;
+
+.pizza {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  background: var(--color-pri);
+  transform: rotateX(60deg);
+
+  box-shadow: 0 10px 10px rgba(20, 20, 20, 0.15);
+}

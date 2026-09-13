@@ -1,5 +1,7 @@
 import Page from "~/components/Page/Page";
 import type { Route } from "./+types/admin";
+import styles from "./admin.module.scss";
+import { useAdmin } from "~/hooks/useAdmin";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -8,10 +10,14 @@ export function meta({ }: Route.MetaArgs) {
 	];
 }
 
-export default function Home() {
+export default function Admin() {
+	const { login } = useAdmin()
+
 	return (
-		<Page>
-			Pizza Index Admin
+		<Page className={styles.admin}>
+			<div className={styles.container}>
+				hello
+			</div>
 		</Page>
 	);
 }

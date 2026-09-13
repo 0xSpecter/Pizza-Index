@@ -1,31 +1,48 @@
 {
-  "name": "pizzaindex",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "serve -s build/client -l 3000",
-    "typecheck": "react-router typegen && tsc"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "^5.102.8",
-    "firebase": "^12.19.0",
-    "isbot": "^5.1.36",
-    "motion": "^13.2.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router": "^8",
-    "serve": "^14.2.6"
-  },
-  "devDependencies": {
-    "@react-router/dev": "^8",
-    "@tailwindcss/vite": "^4.2.2",
-    "@types/node": "^22",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.3"
-  }
+	"name": "pizzaindex",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "react-router build",
+		"dev": "concurrently -n app,storybook -c blue,magenta \"react-router dev\" \"npm run storybook\"",
+		"start": "serve -s build/client -l 3000",
+		"typecheck": "react-router typegen && tsc",
+		"storybook": "storybook dev -p 6006 --no-open",
+		"build-storybook": "storybook build"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "^5.9.1",
+		"@tanstack/react-query": "^5.102.8",
+		"concurrently": "^10.0.5",
+		"firebase": "^12.19.0",
+		"isbot": "^5.1.36",
+		"motion": "^13.2.0",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
+		"react-hook-form": "^7.88.0",
+		"react-router": "^8",
+		"serve": "^14.2.6",
+		"zod": "^4.6.4"
+	},
+	"devDependencies": {
+		"@chromatic-com/storybook": "latest",
+		"@react-router/dev": "^8",
+		"@storybook/addon-a11y": "^10.6.0",
+		"@storybook/addon-docs": "^10.6.0",
+		"@storybook/addon-mcp": "^10.6.0",
+		"@storybook/addon-themes": "^10.6.0",
+		"@storybook/addon-vitest": "^10.6.0",
+		"@storybook/react-vite": "^10.6.0",
+		"@types/node": "^22",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitest/browser-playwright": "latest",
+		"@vitest/coverage-v8": "latest",
+		"playwright": "latest",
+		"sass": "^1.104.1",
+		"storybook": "^10.6.0",
+		"typescript": "^5.9.3",
+		"vite": "^8.0.3",
+		"vitest": "latest"
+	}
 }

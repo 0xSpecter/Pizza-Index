@@ -32,3 +32,6 @@ location: `http://localhost:3000`
 
 The admin pages are protected by a simple password - token combo using firebase rules +
 cloud functions to manage the tokens + firestore TTL
+
+### Ideas
+* Pizza boxes stack and a comparison element (car, tanks, plane)

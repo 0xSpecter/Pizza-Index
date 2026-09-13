@@ -1,4 +1,5 @@
 import type { Timestamp } from "firebase/firestore";
+import { createContext } from "react"
 
 export interface Roommate {
 	name: string,
@@ -31,3 +32,13 @@ export const pizzaKeys = {
 
 	authToken: ['auth'] as const,
 };
+
+export interface AdminContextValues {
+	authed: boolean,
+	token: AuthToken | null | undefined,
+	loading: boolean,
+	login: (v: string) => void,
+	logout: () => void,
+}
+
+export const AdminContext = createContext<AdminContextValues | undefined>(undefined);

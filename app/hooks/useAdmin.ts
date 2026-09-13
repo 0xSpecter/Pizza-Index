@@ -1,36 +1,23 @@
-import { useState } from "react";
-import { useAddAuthToken, useDeleteAuthToken } from "~/firebase/mutations";
-import { useAuthToken } from "~/firebase/queries";
-import { AUTH_TOKEN_KEY, PASSWORD } from "~/firebase/types";
+import { useContext, useEffect } from "react";
+import { AdminContext } from "~/firebase/types";
 
 export function useAdmin() {
-	const [tokenId, setTokenId] = useState(
-		() => localStorage.getItem(AUTH_TOKEN_KEY) ?? ""
-	)
+	const context = useContext(AdminContext);
 
-	const { data: token, isLoading: loading } = useAuthToken(tokenId)
-	const { mutate: deleteAuthToken } = useDeleteAuthToken()
-	const { mutateAsync: addAuthToken } = useAddAuthToken()
-
-	const authed = !!token
-
-	const login = async (passwordAttempt: string) => {
-		if (passwordAttempt !== PASSWORD) return false
-
-		const id = await addAuthToken()
-		setTokenId(id)
-		localStorage.setItem(AUTH_TOKEN_KEY, id)
-		return true
+	if (context === undefined) {
+		throw new Error("useAuth must be used within an AuthProvider");
 	}
 
-	const logout = async () => {
-		if (!tokenId) {
-			throw new Error("Not logged in")
-		}
-		deleteAuthToken(tokenId)
-		localStorage.removeItem(AUTH_TOKEN_KEY)
-		setTokenId("")
-	}
+	useEffect(() => {
+		if (context.loading) return;
+	}, [context.loading]);
 
-	return { authed, token, loading, login, logout }
+
+	return {
+		authed: context.authed,
+		token: context.token,
+		loading: context.loading,
+		login: context.login,
+		logout: context.logout,
+	}
 }

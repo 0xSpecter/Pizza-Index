@@ -1,0 +1,31 @@
+@use "sass:map";
+
+.button {
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--color-pri);
+  color: var(--color-on-pri);
+}
+
+.sm {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.md {
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+}
+
+.lg {
+  padding: 0.5rem 1.25rem;
+  font-size: 1.125rem;
+  border-radius: 1rem;
+}
+
+.boxy {
+  border-radius: 0;
+}

@@ -1,0 +1,11 @@
+.stack {
+  position: relative;
+  width: 5rem;
+  height: calc(5rem + (var(--count) - 1) * 0.75rem);
+}
+
+.layer {
+  position: absolute;
+  bottom: calc(var(--i) * 0.75rem);
+  z-index: var(--i);
+}

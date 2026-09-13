@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
 import type { ReactNode } from "react"
+import styles from "./Page.module.scss"
 
 const variants = {
 	"initial": {
@@ -20,7 +21,7 @@ interface PageProps {
 
 export default function Page({ children, className = "" }: PageProps) {
 	return (
-		<motion.div className={`${className} min-w-full min-h-full bg-bg`}
+		<motion.div className={`${styles.page} ${className}`}
 			variants={variants}
 			initial="initial"
 			animate="open"
