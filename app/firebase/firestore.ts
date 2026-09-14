@@ -1,19 +1,20 @@
 import {
-	arrayUnion,
 	collection,
 	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
+	query,
 	setDoc,
-	updateDoc,
+	where,
+	addDoc,
 	Timestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import type { AuthToken, CreatePizzaProps, Pizza, Roommate } from "./types";
-import { addDoc } from "firebase/firestore/lite";
 
 const roommatesCollection = collection(db, "roommates");
+const pizzasCollection = collection(db, "pizzas");
 
 export async function getRoommates(): Promise<Roommate[]> {
 	const snapshot = await getDocs(roommatesCollection);
@@ -21,38 +22,47 @@ export async function getRoommates(): Promise<Roommate[]> {
 }
 
 export async function getRoommate(name: string): Promise<Roommate | null> {
-	const snapshot = await getDoc(doc(roommatesCollection, name));
+	const snapshot = await getDoc(doc(roommatesCollection, name.toLowerCase()));
 	return snapshot.exists() ? (snapshot.data() as Roommate) : null;
 }
 
 export async function addRoommate(name: string): Promise<void> {
-	await setDoc(doc(roommatesCollection, name), { name, pizzas: [] } satisfies Roommate);
+	await setDoc(doc(roommatesCollection, name.toLowerCase()), { name } satisfies Roommate);
+}
+
+export async function removeRoommate(name: string): Promise<void> {
+	const pizzasSnapshot = await getDocs(query(pizzasCollection, where("roommate", "==", name)));
+	await Promise.all([
+		deleteDoc(doc(roommatesCollection, name.toLowerCase())),
+		...pizzasSnapshot.docs.map((pizzaDoc) => deleteDoc(pizzaDoc.ref)),
+	]);
+}
+
+export async function getPizzas(): Promise<Pizza[]> {
+	const snapshot = await getDocs(pizzasCollection);
+	return snapshot.docs.map((doc) => doc.data() as Pizza);
 }
 
 export async function addPizza(
 	name: string,
 	pizza: CreatePizzaProps
 ): Promise<Pizza> {
+	const ref = doc(pizzasCollection);
 	const newPizza: Pizza = {
 		...pizza,
-		id: crypto.randomUUID(),
+		id: ref.id,
+		roommate: name,
 		createdAt: Timestamp.now(),
 	};
-	await updateDoc(doc(roommatesCollection, name), {
-		pizzas: arrayUnion(newPizza),
-	});
+	await setDoc(ref, newPizza);
 	return newPizza;
 }
 
-export async function removePizza(name: string, pizzaId: string): Promise<void> {
-	const roommate = await getRoommate(name);
-	if (!roommate) return;
-	await updateDoc(doc(roommatesCollection, name), {
-		pizzas: roommate.pizzas.filter((pizza) => pizza.id !== pizzaId),
-	});
+export async function removePizza(pizzaId: string): Promise<void> {
+	await deleteDoc(doc(pizzasCollection, pizzaId));
 }
 
-export async function addAuthToken(): Promise<string> {
+export async function addAuthToken(): Promise<string | null> {
 	const ONE_WEEK_IN_MS = 7 * 24 * 60 * 60 * 1000;
 	const expireAtDate = new Date(Date.now() + ONE_WEEK_IN_MS);
 
@@ -61,7 +71,7 @@ export async function addAuthToken(): Promise<string> {
 		expireAt: Timestamp.fromDate(expireAtDate)
 	});
 
-	return ref.id
+	return ref?.id
 }
 
 export async function getAuthToken(id: string): Promise<AuthToken | null> {
@@ -81,4 +91,3 @@ export async function getAuthToken(id: string): Promise<AuthToken | null> {
 export async function deleteAuthToken(id: string): Promise<void> {
 	await deleteDoc(doc(db, 'auth-tokens', id));
 }
-

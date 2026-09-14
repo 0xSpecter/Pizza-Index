@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAuthToken, getRoommate, getRoommates } from "./firestore";
+import { getAuthToken, getPizzas, getRoommate, getRoommates } from "./firestore";
 import { pizzaKeys } from "./types";
 
 export function useRoommates() {
 	return useQuery({
-		queryKey: pizzaKeys.all,
+		queryKey: pizzaKeys.roommates,
 		queryFn: getRoommates,
 	});
 }
@@ -14,6 +14,13 @@ export function useRoommate(name: string) {
 		queryKey: pizzaKeys.roommate(name),
 		queryFn: () => getRoommate(name),
 		enabled: !!name,
+	});
+}
+
+export function usePizzas() {
+	return useQuery({
+		queryKey: pizzaKeys.pizzas,
+		queryFn: getPizzas,
 	});
 }
 

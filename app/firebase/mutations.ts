@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addAuthToken, addPizza, addRoommate, deleteAuthToken, removePizza } from "./firestore";
+import { addAuthToken, addPizza, addRoommate, deleteAuthToken, removePizza, removeRoommate } from "./firestore";
 import { pizzaKeys, type CreatePizzaProps } from "./types";
 
 export function useAddRoommate() {
@@ -7,7 +7,18 @@ export function useAddRoommate() {
 	return useMutation({
 		mutationFn: (name: string) => addRoommate(name),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: pizzaKeys.all });
+			queryClient.invalidateQueries({ queryKey: pizzaKeys.roommates });
+		},
+	});
+}
+
+export function useRemoveRoommate() {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: (name: string) => removeRoommate(name),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: pizzaKeys.roommates });
+			queryClient.invalidateQueries({ queryKey: pizzaKeys.pizzas });
 		},
 	});
 }
@@ -18,7 +29,7 @@ export function useAddPizza() {
 		mutationFn: ({ name, pizza }: { name: string; pizza: CreatePizzaProps }) =>
 			addPizza(name, pizza),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: pizzaKeys.all });
+			queryClient.invalidateQueries({ queryKey: pizzaKeys.pizzas });
 		},
 	});
 }
@@ -26,10 +37,9 @@ export function useAddPizza() {
 export function useRemovePizza() {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: ({ name, pizzaId }: { name: string; pizzaId: string }) =>
-			removePizza(name, pizzaId),
+		mutationFn: (pizzaId: string) => removePizza(pizzaId),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: pizzaKeys.all });
+			queryClient.invalidateQueries({ queryKey: pizzaKeys.pizzas });
 		},
 	});
 }

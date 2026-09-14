@@ -1,0 +1,39 @@
+@use "constants" as *;
+
+.admin {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	min-height: 100vh;
+	padding: 2rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	padding: 2rem;
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-card);
+	width: 100%;
+	max-width: 20rem;
+}
+
+.password {
+	font: inherit;
+	width: 100%;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-card);
+	background: var(--color-bg);
+	color: var(--color-text);
+}
+
+.error {
+	font-size: 0.85rem;
+	color: var(--color-pri);
+	min-height: 1em;
+}

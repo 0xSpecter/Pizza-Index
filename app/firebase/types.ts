@@ -3,11 +3,11 @@ import { createContext } from "react"
 
 export interface Roommate {
 	name: string,
-	pizzas: Pizza[],
 }
 
 export interface Pizza {
 	id: string,
+	roommate: string,
 	type?: string;
 	brand?: string;
 	price?: number;
@@ -16,7 +16,7 @@ export interface Pizza {
 	createdAt: Timestamp
 }
 
-export type CreatePizzaProps = Omit<Pizza, "id" | "createdAt">;
+export type CreatePizzaProps = Omit<Pizza, "id" | "roommate" | "createdAt">;
 
 export interface AuthToken {
 	createdAt: Timestamp,
@@ -27,8 +27,10 @@ export const AUTH_TOKEN_KEY = "auth_token"
 export const PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 export const pizzaKeys = {
-	all: ["roommates"] as const,
+	roommates: ["roommates"] as const,
 	roommate: (name: string) => ["roommates", name] as const,
+
+	pizzas: ["pizzas"] as const,
 
 	authToken: ['auth'] as const,
 };
@@ -37,7 +39,7 @@ export interface AdminContextValues {
 	authed: boolean,
 	token: AuthToken | null | undefined,
 	loading: boolean,
-	login: (v: string) => void,
+	login: (passwordAttempt: string) => Promise<boolean>,
 	logout: () => void,
 }
 

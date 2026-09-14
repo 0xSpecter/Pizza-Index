@@ -18,6 +18,7 @@ export default function AdminProvider({ children }: { children?: ReactNode }) {
 		if (passwordAttempt !== PASSWORD) return false
 
 		const id = await addAuthToken()
+		if (!id) return false;
 		setTokenId(id)
 		localStorage.setItem(AUTH_TOKEN_KEY, id)
 		return true

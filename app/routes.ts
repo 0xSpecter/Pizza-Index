@@ -5,7 +5,8 @@ export default [
 		index("routes/home/home.tsx"),
 		route("add", "routes/add/add.tsx"),
 		...prefix("admin", [
-			index("routes/admin/admin.tsx")
+			index("routes/admin/admin.tsx"),
+			route("login", "routes/adminLogin/adminLogin.tsx"),
 		]),
 	]),
 ] satisfies RouteConfig;

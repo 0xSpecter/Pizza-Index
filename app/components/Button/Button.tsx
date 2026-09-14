@@ -8,6 +8,7 @@ interface ButtonProps {
 	onClick?: () => void,
 	disabled?: boolean,
 	size?: "sm" | "md" | "lg"
+	type?: 'button' | 'submit';
 }
 
 const variants = {
@@ -19,9 +20,9 @@ const variants = {
 	}
 }
 
-export default function Button({ children, className = "", onClick, disabled, size = "md" }: ButtonProps) {
+export default function Button({ children, className = "", onClick, disabled, size = "md", type = "button" }: ButtonProps) {
 	return (
-		<motion.button type="button"
+		<motion.button type={type}
 			className={`${styles.button} ${styles[size]} ${className}`}
 			variants={variants}
 			whileHover="hover"
