@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "~/hooks/useTheme";
 import styles from "./ThemeToggle.module.scss";
 import { motion, type Variants } from "motion/react"
@@ -35,6 +36,7 @@ const lineVariants: Variants = {
 }
 
 export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
+	const { t } = useTranslation();
 	const { theme, toggleTheme } = useTheme();
 	const maskId = useId();
 	const isLight = theme === "light";
@@ -54,7 +56,7 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
 			type="button"
 			onClick={toggleTheme}
 			className={`${styles.themeToggle} ${className}`}
-			aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+			aria-label={isLight ? t("theme.toDark") : t("theme.toLight")}
 			aria-pressed={!isLight}
 		>
 			<motion.svg className={styles.svg} viewBox={`0 0 ${width} ${height}`}

@@ -21,13 +21,15 @@ interface PageProps {
 
 export default function Page({ children, className = "" }: PageProps) {
 	return (
-		<motion.div className={`${styles.page} ${className}`}
+		<motion.div className={styles.page}
 			variants={variants}
 			initial="initial"
 			animate="open"
 			exit="exit"
 		>
-			{children}
+			<div className={`${styles.content} ${className}`}>
+				{children}
+			</div>
 		</motion.div>
 	)
 }

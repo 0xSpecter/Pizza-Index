@@ -1,0 +1,203 @@
+@use "constants" as *;
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.header {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-style: italic;
+
+  @include phone {
+    font-size: 2rem;
+  }
+}
+
+.muted {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.timespan {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 48rem;
+
+  @include phone {
+    gap: 0.25rem;
+  }
+}
+
+.arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: rgb(0 0 0 / 10%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  @include phone {
+    width: 2rem;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.cardHeader {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+.placeholder {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--color-muted);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.leaderboard {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  align-items: center;
+  gap: 0.6rem 0.75rem;
+}
+
+.leaderRow {
+  display: contents;
+}
+
+.leaderName {
+  text-transform: capitalize;
+}
+
+.leaderTrack {
+  display: block;
+  height: 0.75rem;
+}
+
+.leaderBar {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  background: var(--color-pri);
+  border-radius: 0 4px 4px 0;
+}
+
+.leaderCount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.buckets {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.bucket {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 5px;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.bucketPlot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 10rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bucketBar {
+  display: block;
+  width: 60%;
+  max-width: 1.5rem;
+  background: var(--color-pri);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.bucketValue {
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.bucketLabel {
+  height: 1rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+// The value shows on hover or focus; the latest period is always labelled.
+.bucket:hover,
+.bucket:focus-visible,
+.latestBucket {
+  .bucketBar {
+    opacity: 1;
+  }
+
+  .bucketValue {
+    opacity: 1;
+  }
+}

@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getAuthToken, getPizzas, getRoommate, getRoommates } from "./firestore";
 import { pizzaKeys } from "./types";
 
 export function useRoommates() {
-	return useQuery({
+	return useSuspenseQuery({
 		queryKey: pizzaKeys.roommates,
 		queryFn: getRoommates,
 	});

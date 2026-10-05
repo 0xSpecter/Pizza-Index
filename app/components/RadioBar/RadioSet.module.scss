@@ -1,0 +1,116 @@
+@use "constants" as *;
+
+.radioSet {}
+
+.bar {
+  @extend .radioSet;
+  border-radius: 10px;
+  border: 2px var(--color-pri) solid;
+  padding: 5px;
+}
+
+.circle {
+  @extend .radioSet;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-rows: max-content;
+  isolation: isolate;
+  grid-auto-flow: column;
+  margin: 0;
+  padding: 0;
+}
+
+.barRow {
+  @extend .row;
+  gap: 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.circleRow {
+  @extend .row;
+  gap: 10px;
+  width: max-content;
+  margin-inline: auto;
+  grid-auto-columns: 1fr;
+}
+
+.option {
+  position: relative;
+  color: var(--color-text);
+  text-align: center;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+
+  transition: background 100ms ease-in-out, color 150ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    background: #55555511;
+  }
+}
+
+.selected {
+  color: var(--color-pri);
+}
+
+.barOption {
+  @extend .option;
+  border-radius: 10px;
+  padding: 12px 10px;
+  flex: 1 0 auto;
+
+  @include phone {
+    padding: 6px 5px;
+    font-size: 1rem;
+  }
+}
+
+.circleOption {
+  @extend .option;
+  border-radius: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  min-width: calc(1lh + 20px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+
+  @include phone {
+    padding: 5px;
+    font-size: 1.5rem;
+  }
+}
+
+.input {
+  appearance: none;
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bgbox {
+  position: absolute;
+  background: var(--color-sec);
+  pointer-events: none;
+  inset: 0;
+  z-index: -1;
+}
+
+.barBgbox {
+  @extend .bgbox;
+  border-radius: 10px;
+}
+
+
+.circleBgbox {
+  @extend .bgbox;
+  border-radius: 50%;
+}

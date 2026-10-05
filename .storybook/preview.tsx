@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 import { MemoryRouter } from 'react-router'
 import { withThemeByClassName } from '@storybook/addon-themes'
 import '../app/app.scss'
+import '../app/i18n/i18n'
 
 const preview: Preview = {
   decorators: [

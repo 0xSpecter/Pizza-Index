@@ -44,14 +44,12 @@ export async function getPizzas(): Promise<Pizza[]> {
 }
 
 export async function addPizza(
-	name: string,
 	pizza: CreatePizzaProps
 ): Promise<Pizza> {
 	const ref = doc(pizzasCollection);
 	const newPizza: Pizza = {
 		...pizza,
 		id: ref.id,
-		roommate: name,
 		createdAt: Timestamp.now(),
 	};
 	await setDoc(ref, newPizza);

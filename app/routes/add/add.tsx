@@ -1,112 +1,108 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Page from "~/components/Page/Page";
+import RadioSet from "~/components/RadioBar/RadioSet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRoommates } from "~/firebase/queries";
 import { useAddPizza } from "~/firebase/mutations";
-import type { CreatePizzaProps } from "~/firebase/types";
+import { pizzaSize, type CreatePizzaProps } from "~/firebase/types";
 import type { Route } from "./+types/add";
 import styles from "./add.module.scss";
 import z from "zod";
-
-interface AddPizzaFormValues {
-	roommate: string;
-	type: string;
-	brand: string;
-	price: number;
-	grams: number;
-	discounted: boolean;
-}
-
-const addPizzaSchema = z.object({
-	roommate: z.string(),
-	type: z.string(),
-	brand: z.string(),
-	price: z.number(),
-	grams: z.number(),
-	discounted: z.boolean(),
-}) satisfies z.ZodType<AddPizzaFormValues>
-
-type AddPizzaSchema = z.infer<typeof addPizzaSchema>
+import { useTranslation } from "react-i18next";
+import i18n from "~/i18n/i18n";
+import { getAddPizzaPreferences, setAddPizzaPreferences } from "~/firebase/utils";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
-		{ title: "Add a pizza – Pizzaindex" },
-		{ name: "description", content: "Log a frozen pizza you just ate" },
+		{ title: i18n.t("add.title") },
+		{ name: "description", content: i18n.t("add.description") },
 	];
 }
 
 export default function Add() {
-	const { data: roommates, isLoading: loadingRoommates } = useRoommates();
+	const { t } = useTranslation();
+	const { data: roommates } = useRoommates();
+	const roommateNames: string[] = roommates.map(mate => mate.name);
+
+	const pizzaPreferences = getAddPizzaPreferences()
+
 	const { mutate: addPizza, isPending } = useAddPizza();
+
+	const addPizzaSchema = z.object({
+		roommate: z.enum(roommateNames),
+		size: z.enum(pizzaSize),
+	}) satisfies z.ZodType<CreatePizzaProps>
+
+	type AddPizzaSchema = z.infer<typeof addPizzaSchema>
 
 	const {
 		register,
+		control,
 		handleSubmit,
 		reset,
 		formState: { errors, isSubmitSuccessful },
 	} = useForm<AddPizzaSchema>({
 		resolver: zodResolver(addPizzaSchema),
+		defaultValues: {
+			roommate: pizzaPreferences.roommateName ?? roommateNames[0],
+			size: pizzaPreferences.size ?? pizzaSize[1],
+		}
 	});
 
-	const onSubmit = (data: AddPizzaFormValues) => {
-		const pizza: CreatePizzaProps = {
-			type: data.type || undefined,
-			brand: data.brand || undefined,
-			price: Number.isNaN(data.price) ? undefined : data.price,
-			grams: Number.isNaN(data.grams) ? undefined : data.grams,
-			discounted: data.discounted,
-		};
-
-		addPizza({ name: data.roommate, pizza }, { onSuccess: () => reset() });
+	const onSubmit = (pizza: CreatePizzaProps) => {
+		addPizza(pizza, {
+			onSuccess: () => {
+				setAddPizzaPreferences(pizza.roommate, pizza.size);
+				reset({ roommate: pizza.roommate, size: pizza.size })
+			}
+		});
 	};
 
 	return (
 		<Page className={styles.add}>
-			<h1 className={styles.header}>Add a pizza</h1>
+			<h1 className={styles.header}>{t("pizza.addPizza")}</h1>
 			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-				<label className={styles.field}>
-					Who ate it?
-					<select defaultValue="" disabled={loadingRoommates} {...register("roommate", { required: true })}>
-						<option value="" disabled>Select a roommate</option>
-						{roommates?.map((roommate) => (
-							<option key={roommate.name} value={roommate.name}>
-								{roommate.name}
-							</option>
-						))}
-					</select>
-					{errors.roommate && <span className={styles.error}>Pick a roommate</span>}
-				</label>
-
-				<label className={styles.field}>
-					Brand
-					<input type="text" placeholder="e.g. Dr. Oetker" {...register("brand")} />
-				</label>
-
-				<label className={styles.field}>
-					Type
-					<input type="text" placeholder="e.g. Margherita" {...register("type")} />
-				</label>
-
-				<label className={styles.field}>
-					Price
-					<input type="number" step="0.01" min="0" {...register("price", { valueAsNumber: true })} />
-				</label>
-
-				<label className={styles.field}>
-					Grams
-					<input type="number" min="0" {...register("grams", { valueAsNumber: true })} />
-				</label>
-
-				<label className={styles.checkbox}>
-					<input type="checkbox" {...register("discounted")} />
-					On discount
-				</label>
+				<div className={styles.field}>
+					{t("add.who")}
+					<Controller
+						name="roommate"
+						control={control}
+						render={({ field }) => (
+							<RadioSet
+								options={roommateNames}
+								name={field.name}
+								value={roommateNames.indexOf(field.value)}
+								onChange={(index) => field.onChange(roommateNames[index])}
+								onBlur={field.onBlur}
+							/>
+						)}
+					/>
+					{errors.roommate && <span className={styles.error}>{t("add.pickRoommate")}</span>}
+				</div>
+				<div className={styles.field}>
+					{t("pizza.size")}
+					<Controller
+						name="size"
+						control={control}
+						render={({ field }) => (
+							<RadioSet
+								options={["s", "m", "l"]}
+								name={field.name}
+								value={pizzaSize.indexOf(field.value)}
+								onChange={(index) => field.onChange(pizzaSize[index])}
+								onBlur={field.onBlur}
+								variant="circle"
+							/>
+						)}
+					/>
+					{errors.size && <span className={styles.error}>{t("add.pickSize")}</span>}
+				</div>
 
 				<button type="submit" className={styles.submit} disabled={isPending}>
-					{isPending ? "Adding…" : "Add pizza"}
+					{isPending ? t("pizza.adding") : t("navbar.addPizza")}
 				</button>
 
-				{isSubmitSuccessful && <p className={styles.success}>Pizza logged!</p>}
+				{isSubmitSuccessful && <p className={styles.success}>{t("add.success")}</p>}
 			</form>
 		</Page>
 	);

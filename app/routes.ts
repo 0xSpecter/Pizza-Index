@@ -4,6 +4,8 @@ export default [
 	layout("layouts/layout.tsx", [
 		index("routes/home/home.tsx"),
 		route("add", "routes/add/add.tsx"),
+		route("charts", "routes/charts/charts.tsx"),
+		route("stats", "routes/stats/stats.tsx"),
 		...prefix("admin", [
 			index("routes/admin/admin.tsx"),
 			route("login", "routes/adminLogin/adminLogin.tsx"),

@@ -1,22 +1,25 @@
 import type { Timestamp } from "firebase/firestore";
 import { createContext } from "react"
 
+export const PREF_ROOMMATE_KEY = "pref_roommate"
+export const PREF_SIZE_KEY = "pref_size"
+
+export type RoommateName = string;
 export interface Roommate {
-	name: string,
+	name: RoommateName,
 }
+
+export type PizzaSize = "small" | "medium" | "large";
+export const pizzaSize: PizzaSize[] = ["small", "medium", "large"];
 
 export interface Pizza {
 	id: string,
-	roommate: string,
-	type?: string;
-	brand?: string;
-	price?: number;
-	grams?: number;
-	discounted?: boolean;
+	roommate: RoommateName,
+	size: PizzaSize,
 	createdAt: Timestamp
 }
 
-export type CreatePizzaProps = Omit<Pizza, "id" | "roommate" | "createdAt">;
+export type CreatePizzaProps = Omit<Pizza, "id" | "createdAt">;
 
 export interface AuthToken {
 	createdAt: Timestamp,

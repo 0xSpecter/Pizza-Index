@@ -1,0 +1,115 @@
+{
+	"common": {
+		"uwu": "uwu",
+		"loading": "Loading…",
+		"cancel": "Cancel",
+		"name": "Name",
+		"comingSoon": "Coming soon"
+	},
+	"navbar": {
+		"admin": "Admin",
+		"charts": "Charts",
+		"addPizza": "Add pizza",
+		"menu": "Menu",
+		"stats": "Stats"
+	},
+	"theme": {
+		"toDark": "Switch to dark mode",
+		"toLight": "Switch to light mode"
+	},
+	"language": {
+		"switch": "Bytt til norsk"
+	},
+	"pizza": {
+		"add": "Add",
+		"adding": "Adding…",
+		"addPizza": "Add a pizza",
+		"roommate": "Roommate",
+		"roommates": "Roommates",
+		"size": "Size",
+		"sizes": {
+			"small": "Small",
+			"medium": "Medium",
+			"large": "Large"
+		},
+		"count_one": "{{count}} pizza",
+		"count_other": "{{count}} pizzas"
+	},
+	"home": {
+		"title": "Pizzaindex",
+		"description": "An index of how many frozen pizzas are consumed where I live",
+		"header": "Pizza Index",
+		"eaten_one": "{{count}} pizza has been eaten this week",
+		"eaten_other": "{{count}} pizzas have been eaten this week",
+		"lastWeek": "Last week",
+		"allTime": "All time",
+		"favouriteSize": "Favourite size",
+		"more": "{{count}} more than last week",
+		"fewer": "{{count}} fewer than last week",
+		"same": "Same as last week"
+	},
+	"add": {
+		"title": "Add a pizza – Pizzaindex",
+		"description": "Log a frozen pizza you just ate",
+		"who": "Who ate it?",
+		"pickRoommate": "Pick a roommate",
+		"pickSize": "Pick a size",
+		"success": "Pizza logged!"
+	},
+	"admin": {
+		"title": "Pizzaindex admin",
+		"description": "Admin page for fixing db related stuff",
+		"noRoommates": "No roommates yet",
+		"exists": "{{name}} already exists",
+		"addFailed": "Could not add roommate",
+		"removeConfirm": "Remove {{name}}?",
+		"removeConfirmWithPizzas_one": "Remove {{name}} and their {{count}} pizza?",
+		"removeConfirmWithPizzas_other": "Remove {{name}} and their {{count}} pizzas?",
+		"removeFailed": "Could not remove {{name}}",
+		"removeRoommate": "Remove {{name}}",
+		"roommateName": "Roommate name",
+		"addRoommate": "Add roommate",
+		"logout": "Log out",
+		"loadFailed": "Could not load pizzas",
+		"noPizzas": "No pizzas logged yet",
+		"createdAt": "Created at",
+		"removePizzaConfirm": "Remove this pizza?",
+		"removePizzaFailed": "Could not remove pizza",
+		"removePizza": "Remove pizza ({{name}}, {{size}})"
+	},
+	"login": {
+		"description": "Password check",
+		"password": "Password",
+		"invalid": "Invalid password",
+		"submit": "Submit"
+	},
+	"error": {
+		"oops": "Oops!",
+		"error": "Error",
+		"unexpected": "An unexpected error occurred.",
+		"notFound": "The requested page could not be found."
+	},
+	"charts": {
+		"title": "Charts – Pizzaindex",
+		"description": "Charts of who eats how many frozen pizzas",
+		"header": "Charts",
+		"leaderboard": "Leaderboard",
+		"overTime": "Pizzas over time",
+		"sizes": "Sizes",
+		"weekdays": "Weekdays",
+		"empty": "No pizzas in this period",
+		"previous": "Previous chart",
+		"next": "Next chart",
+		"timespans": {
+			"week": "Week",
+			"month": "Month",
+			"year": "Year",
+			"all": "All time"
+		}
+	},
+	"stats": {
+		"title": "Stats – Pizzaindex",
+		"description": "Pizza statistics",
+		"header": "Stats"
+	}
+}

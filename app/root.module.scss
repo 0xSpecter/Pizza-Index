@@ -7,6 +7,12 @@
   padding-top: 4rem;
 }
 
+.loadingMain {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
 .stack {
   width: 100%;
   padding: 1rem;

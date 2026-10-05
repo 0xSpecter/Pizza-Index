@@ -29,6 +29,11 @@
   color: var(--color-muted);
 }
 
+.error {
+  margin: 0;
+  color: var(--color-pri);
+}
+
 .roommates {
   display: flex;
   flex-direction: column;
@@ -72,6 +77,16 @@
   &:hover {
     color: var(--color-pri);
   }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
+.count {
+  margin-left: auto;
+  color: var(--color-muted);
 }
 
 .contrl {
@@ -87,6 +102,11 @@
 }
 
 .add {
+  font: inherit;
+  padding: 0 0.5rem;
+  background: none;
+  border: none;
+  color: inherit;
   cursor: pointer;
 }
 

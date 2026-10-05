@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addAuthToken, addPizza, addRoommate, deleteAuthToken, removePizza, removeRoommate } from "./firestore";
-import { pizzaKeys, type CreatePizzaProps } from "./types";
+import { pizzaKeys, type CreatePizzaProps, type RoommateName } from "./types";
 
 export function useAddRoommate() {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: (name: string) => addRoommate(name),
+		mutationFn: (name: RoommateName) => addRoommate(name),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: pizzaKeys.roommates });
 		},
@@ -15,7 +15,7 @@ export function useAddRoommate() {
 export function useRemoveRoommate() {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: (name: string) => removeRoommate(name),
+		mutationFn: (name: RoommateName) => removeRoommate(name),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: pizzaKeys.roommates });
 			queryClient.invalidateQueries({ queryKey: pizzaKeys.pizzas });
@@ -26,8 +26,8 @@ export function useRemoveRoommate() {
 export function useAddPizza() {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: ({ name, pizza }: { name: string; pizza: CreatePizzaProps }) =>
-			addPizza(name, pizza),
+		mutationFn: (pizza: CreatePizzaProps) =>
+			addPizza(pizza),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: pizzaKeys.pizzas });
 		},

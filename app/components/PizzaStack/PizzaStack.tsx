@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react"
 
 interface PizzaStackProps {
 	count: number,
+	max?: number,
 	className?: string,
 }
 
@@ -23,14 +24,14 @@ const variants = {
 	}
 }
 
-export default function PizzaStack({ count, className = "" }: PizzaStackProps) {
+export default function PizzaStack({ count, max = 15, className = "" }: PizzaStackProps) {
 	return (
 		<div
 			className={`${styles.stack} ${className}`}
 			style={{ "--count": count } as CSSProperties}
 		>
 			<AnimatePresence>
-				{Array.from({ length: count }, (_, i) => (
+				{Array.from({ length: Math.min(count, max) }, (_, i) => (
 					<motion.div
 						variants={variants}
 						initial="initial"

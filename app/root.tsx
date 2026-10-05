@@ -6,10 +6,13 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from "react-router";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import type { Route } from "./+types/root";
 import "./app.scss";
+import "./i18n/i18n";
 import styles from "./root.module.scss";
 import AdminProvider from "./providers/AdminProvider";
 
@@ -29,6 +32,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+	// Re-render on language change so <Meta /> picks up the translated titles.
+	useTranslation();
 	return (
 		<html lang="en">
 			<head>
@@ -52,25 +57,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+	const { t } = useTranslation();
 	return (
 		<QueryClientProvider client={queryClient}>
 			<AdminProvider>
-				<Outlet />
+				<Suspense fallback={<main className={styles.loadingMain}>{t("common.loading")}</main>}>
+					<Outlet />
+				</Suspense>
 			</AdminProvider>
 		</QueryClientProvider>
 	);
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-	let message = "Oops!";
-	let details = "An unexpected error occurred.";
+	const { t } = useTranslation();
+	let message = t("error.oops");
+	let details = t("error.unexpected");
 	let stack: string | undefined;
 
 	if (isRouteErrorResponse(error)) {
-		message = error.status === 404 ? "404" : "Error";
+		message = error.status === 404 ? "404" : t("error.error");
 		details =
 			error.status === 404
-				? "The requested page could not be found."
+				? t("error.notFound")
 				: error.statusText || details;
 	} else if (import.meta.env.DEV && error && error instanceof Error) {
 		details = error.message;

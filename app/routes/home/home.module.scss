@@ -3,10 +3,10 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   align-items: center;
+
+  gap: 1rem;
   padding: 1rem;
-  min-height: 100vh;
 }
 
 .header {
@@ -14,6 +14,7 @@
   font-family: var(--font-display);
   font-size: 7rem;
   font-weight: 600;
+  min-height: 30vh;
   font-style: italic;
   letter-spacing: 1rem;
   text-align: center;
@@ -26,4 +27,55 @@
 
 .explanation {
   font-size: 1.5rem;
+}
+
+.muted {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+
+.hero {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 60vh;
+
+  @include phone {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  .explanation {
+    margin: 0;
+  }
+
+  @include phone {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.addPizza {
+  padding-top: 2rem;
+  min-height: 20vh;
+}
+
+.cta {
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  font-size: 3rem;
+  text-decoration: none;
+  text-wrap: nowrap;
+  text-transform: uppercase;
+  background: var(--color-sec);
+  color: var(--color-on-sec);
 }

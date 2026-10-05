@@ -1,0 +1,32 @@
+@use "constants" as *;
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.header {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-style: italic;
+
+  @include phone {
+    font-size: 2rem;
+  }
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 48rem;
+  min-height: 18rem;
+  margin: 0;
+  color: var(--color-muted);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-card);
+}

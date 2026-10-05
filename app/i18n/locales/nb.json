@@ -1,0 +1,115 @@
+{
+	"common": {
+		"uwu": "uwu",
+		"loading": "Laster…",
+		"cancel": "Avbryt",
+		"name": "Navn",
+		"comingSoon": "Kommer snart"
+	},
+	"navbar": {
+		"admin": "Admin",
+		"charts": "Grafer",
+		"addPizza": "Legg til pizza",
+		"menu": "Meny",
+		"stats": "Statistikk"
+	},
+	"theme": {
+		"toDark": "Bytt til mørk modus",
+		"toLight": "Bytt til lys modus"
+	},
+	"language": {
+		"switch": "Switch to English"
+	},
+	"pizza": {
+		"add": "Legg til",
+		"adding": "Legger til…",
+		"addPizza": "Legg til en pizza",
+		"roommate": "Beboer",
+		"roommates": "Beboere",
+		"size": "Størrelse",
+		"sizes": {
+			"small": "Liten",
+			"medium": "Medium",
+			"large": "Stor"
+		},
+		"count_one": "{{count}} pizza",
+		"count_other": "{{count}} pizzaer"
+	},
+	"home": {
+		"title": "Pizzaindex",
+		"description": "En oversikt over hvor mange frossenpizzaer som spises der jeg bor",
+		"header": "Pizzaindeks",
+		"eaten_one": "{{count}} pizza har blitt spist denne uken",
+		"eaten_other": "{{count}} pizzaer har blitt spist denne uken",
+		"lastWeek": "Forrige uke",
+		"allTime": "Totalt",
+		"favouriteSize": "Favorittstørrelse",
+		"more": "{{count}} flere enn forrige uke",
+		"fewer": "{{count}} færre enn forrige uke",
+		"same": "Samme som forrige uke"
+	},
+	"add": {
+		"title": "Legg til en pizza – Pizzaindex",
+		"description": "Loggfør en frossenpizza du nettopp har spist",
+		"who": "Hvem spiste den?",
+		"pickRoommate": "Velg en beboer",
+		"pickSize": "Velg en størrelse",
+		"success": "Pizza loggført!"
+	},
+	"admin": {
+		"title": "Pizzaindex admin",
+		"description": "Adminside for å rydde i databasen",
+		"noRoommates": "Ingen beboere ennå",
+		"exists": "{{name}} finnes allerede",
+		"addFailed": "Kunne ikke legge til beboer",
+		"removeConfirm": "Fjerne {{name}}?",
+		"removeConfirmWithPizzas_one": "Fjerne {{name}} og {{count}} pizza?",
+		"removeConfirmWithPizzas_other": "Fjerne {{name}} og {{count}} pizzaer?",
+		"removeFailed": "Kunne ikke fjerne {{name}}",
+		"removeRoommate": "Fjern {{name}}",
+		"roommateName": "Navn på beboer",
+		"addRoommate": "Legg til beboer",
+		"logout": "Logg ut",
+		"loadFailed": "Kunne ikke laste pizzaer",
+		"noPizzas": "Ingen pizzaer loggført ennå",
+		"createdAt": "Opprettet",
+		"removePizzaConfirm": "Fjerne denne pizzaen?",
+		"removePizzaFailed": "Kunne ikke fjerne pizzaen",
+		"removePizza": "Fjern pizza ({{name}}, {{size}})"
+	},
+	"login": {
+		"description": "Passordsjekk",
+		"password": "Passord",
+		"invalid": "Feil passord",
+		"submit": "Send inn"
+	},
+	"error": {
+		"oops": "Oi!",
+		"error": "Feil",
+		"unexpected": "Det oppstod en uventet feil.",
+		"notFound": "Fant ikke siden."
+	},
+	"charts": {
+		"title": "Grafer – Pizzaindex",
+		"description": "Grafer over hvem som spiser hvor mange frossenpizzaer",
+		"header": "Grafer",
+		"leaderboard": "Toppliste",
+		"overTime": "Pizzaer over tid",
+		"sizes": "Størrelser",
+		"weekdays": "Ukedager",
+		"empty": "Ingen pizzaer i denne perioden",
+		"previous": "Forrige graf",
+		"next": "Neste graf",
+		"timespans": {
+			"week": "Uke",
+			"month": "Måned",
+			"year": "År",
+			"all": "Totalt"
+		}
+	},
+	"stats": {
+		"title": "Statistikk – Pizzaindex",
+		"description": "Pizzastatistikk",
+		"header": "Statistikk"
+	}
+}

@@ -5,15 +5,18 @@ import { useAdmin } from "~/hooks/useAdmin";
 import Button from "~/components/Button/Button";
 import { useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import i18n from "~/i18n/i18n";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
-		{ title: "Pizzaindex admin" },
-		{ name: "description", content: "Password check" },
+		{ title: i18n.t("admin.title") },
+		{ name: "description", content: i18n.t("login.description") },
 	];
 }
 
 export default function AdminLogin() {
+	const { t } = useTranslation()
 	const { authed, loading, login } = useAdmin()
 	const navigate = useNavigate()
 	const ref = useRef<HTMLInputElement | null>(null)
@@ -36,7 +39,7 @@ export default function AdminLogin() {
 		console.log(success)
 
 		if (!success) {
-			setError("Invalid password")
+			setError(t("login.invalid"))
 			return
 		};
 
@@ -48,6 +51,7 @@ export default function AdminLogin() {
 			<div className={styles.container}>
 				<input className={styles.password}
 					type="password"
+					aria-label={t("login.password")}
 					ref={ref}
 					onKeyDown={(e) => e.key === "Enter" && submit()}
 				/>
@@ -55,7 +59,7 @@ export default function AdminLogin() {
 					{error ? error : ""}
 				</span>
 				<Button onClick={submit} disabled={submitting}>
-					Submit
+					{t("login.submit")}
 				</Button >
 			</div>
 		</Page>
