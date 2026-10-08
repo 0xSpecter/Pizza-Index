@@ -5,7 +5,7 @@ import PizzaStack from "~/components/PizzaStack/PizzaStack";
 import { usePizzas } from "~/firebase/queries";
 import { pizzaSize, type Pizza } from "~/firebase/types";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
+import AddPizzaButton from "~/components/AddPizzaButton/AddPizzaButton";
 import i18n from "~/i18n/i18n";
 import { addDays, startOfWeek } from "~/utils/dates";
 
@@ -60,7 +60,7 @@ export default function Home() {
 			<Page className={styles.home}>
 				<h1 className={styles.header}>{t("home.header")}</h1>
 				<p className={styles.muted}>{t("admin.noPizzas")}</p>
-				<Link to="/add" className={styles.cta}>{t("navbar.addPizza")}</Link>
+				<AddPizzaButton to="/add" size="lg" />
 			</Page>
 		)
 	}
@@ -86,7 +86,7 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={styles.addPizza}>
-				<Link to="/add" className={styles.cta}>{t("navbar.addPizza")}</Link>
+				<AddPizzaButton to="/add" size="lg" />
 			</section>
 		</Page>
 	)

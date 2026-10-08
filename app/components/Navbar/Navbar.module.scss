@@ -77,15 +77,8 @@
   }
 }
 
-.addPizza {
-  padding: 0.4rem 0.75rem;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  text-decoration: none;
-  background: var(--color-sec);
-  color: var(--color-on-sec);
-
-  text-transform: uppercase;
+.navbar .addPizza {
+  border-color: var(--color-on-pri);
 }
 
 .wrap {

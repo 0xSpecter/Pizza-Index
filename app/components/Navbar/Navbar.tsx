@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import ThemeToggle from "~/components/ThemeToggle/ThemeToggle";
+import AddPizzaButton from "~/components/AddPizzaButton/AddPizzaButton";
 import styles from "./Navbar.module.scss";
 import Language from "../Language/Language";
 import { useState } from "react";
@@ -53,9 +54,7 @@ export default function Navbar({ }: NavbarProps) {
 						</Link>
 					</li>
 					<li>
-						<Link to="/add" className={styles.addPizza}>
-							{t("navbar.addPizza")}
-						</Link>
+						<AddPizzaButton to="/add" size="sm" className={styles.addPizza} />
 					</li>
 
 				</ul>
@@ -81,9 +80,7 @@ export default function Navbar({ }: NavbarProps) {
 				<Link to="/stats" className={styles.link} onClick={() => setWrapped(true)}>
 					{t("navbar.stats")}
 				</Link>
-				<Link to="/add" className={styles.addPizza} onClick={() => setWrapped(true)}>
-					{t("navbar.addPizza")}
-				</Link>
+				<AddPizzaButton to="/add" className={styles.addPizza} onClick={() => setWrapped(true)} />
 			</div>
 		</motion.nav>
 	);

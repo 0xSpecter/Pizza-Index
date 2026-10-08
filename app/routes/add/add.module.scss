@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   padding: 2rem 1rem;
 }
 
@@ -57,24 +57,98 @@
 }
 
 .submit {
-  font: inherit;
-  font-weight: 600;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: var(--radius-card);
-  background: var(--color-pri);
-  color: var(--color-on-pri);
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+  align-self: center;
 }
 
 .success {
   margin: 0;
   text-align: center;
   color: var(--color-tert);
+}
+
+.addedPizzas {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 24rem;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--color-pri);
+  border-radius: var(--radius-card);
+
+  &:empty {
+    display: none;
+  }
+}
+
+.addedPizza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+
+  &+& {
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+.addedPizzaInfo {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: .5rem;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+
+.addedRoomate {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.addedSize {
+  flex: none;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sec);
+  color: var(--color-on-sec);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.addedDate {
+  flex: none;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.addedPizzaDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.5rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--color-pri);
+  border-radius: 50%;
+  color: var(--color-pri);
+  // the "-" glyph sits below centre, so hide it and draw the bar instead
+  font-size: 0;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 0.6rem;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+  }
+
+  &:hover {
+    background: var(--color-pri);
+    color: var(--color-on-pri);
+  }
 }

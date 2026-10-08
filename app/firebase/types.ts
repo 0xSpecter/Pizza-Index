@@ -4,6 +4,8 @@ import { createContext } from "react"
 export const PREF_ROOMMATE_KEY = "pref_roommate"
 export const PREF_SIZE_KEY = "pref_size"
 
+export const ADDED_PIZZAS_KEY = "added_pizzas"
+
 export type RoommateName = string;
 export interface Roommate {
 	name: RoommateName,

@@ -4,22 +4,22 @@
   --font-display: "Luckiest Guy", cursive;
 
   /* surfaces */
-  --color-bg: #fff8ec;
+  --color-bg: #f4e9d8;
   --color-on-bg: #2b1b12;
   --color-text: var(--color-on-bg);
-  --color-surface: #fff1d6;
-  --color-border: #e8d5b5;
-  --color-muted: #8a7256;
+  --color-surface: #ebdcc4;
+  --color-border: #d9c4a1;
+  --color-muted: #735d46;
 
   /* brand */
-  --color-pri: #d62828;
-  --color-on-pri: #fff8ec;
-  --color-sec: #ffb703;
+  --color-pri: #c5281c;
+  --color-on-pri: #fff6e9;
+  --color-sec: #f5ae14;
   --color-on-sec: #2b1b12;
-  --color-tert: #4c9a63;
-  --color-on-tert: #fff8ec;
-  --color-acc: #2ec4b6;
-  --color-on-acc: #fff8ec;
+  --color-tert: #2a7241;
+  --color-on-tert: #fff6e9;
+  --color-acc: #147a72;
+  --color-on-acc: #fff6e9;
 
   /* flags */
   --flag-white: #ffffff;
@@ -32,20 +32,20 @@
 }
 
 :root.dark {
-  --color-bg: #1c130d;
-  --color-on-bg: #fbead9;
-  --color-surface: #2b1d13;
-  --color-border: #4a3524;
-  --color-muted: #b39a7f;
+  --color-bg: #2a1e16;
+  --color-on-bg: #f6e6d3;
+  --color-surface: #372820;
+  --color-border: #54402f;
+  --color-muted: #bfa98f;
 
-  --color-pri: #ff5a5f;
-  --color-on-pri: #1c130d;
-  --color-sec: #ffc93c;
-  --color-on-sec: #1c130d;
-  --color-tert: #6cc38b;
-  --color-on-tert: #1c130d;
-  --color-acc: #3fe0d0;
-  --color-on-acc: #1c130d;
+  --color-pri: #ff6b63;
+  --color-on-pri: #24170f;
+  --color-sec: #ffc94a;
+  --color-on-sec: #24170f;
+  --color-tert: #74c992;
+  --color-on-tert: #24170f;
+  --color-acc: #45d6c8;
+  --color-on-acc: #24170f;
 
   --flag-white: #fbead9;
   --flag-en-cross: #ff5a5f;
